@@ -55,7 +55,7 @@ E-commerce-Funnel/
 
 
 ## 🧩 Приклад візуалізації
-![E-commerce Funnel Dashboard](images/)
+![E-commerce Funnel Dashboard](images/funnel.PNG)
 
 ---
 
