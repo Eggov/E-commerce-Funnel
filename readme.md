@@ -1,68 +1,112 @@
-# E-Commerce Conversion Funnel & Traffic Analysis (Looker Studio Case Study)
+# E-Commerce Conversion Funnel & Behavioral Traffic Analytics
+*Advanced Looker Studio & Google BigQuery Case Study*
+
+[![Looker Studio](https://img.shields.io/badge/BI_Tool-Looker_Studio-4285F4?style=flat&logo=google)](https://lookerstudio.google.com/)
+[![Google BigQuery](https://img.shields.io/badge/Data_Warehouse-BigQuery-669DF6?style=flat&logo=googlecloud)](https://cloud.google.com/bigquery)
+[![SQL](https://img.shields.io/badge/SQL-Advanced_Data_Prep-CC292B?style=flat&logo=SQL)](./src)
+
+---
 
 ## 📌 Business Overview & Challenge
-A digital commerce retailer experienced a stagnation in customer conversion growth despite stable traffic inputs. The primary challenge was the lack of end-to-end visibility across the customer journey—from the initial web session to the final transaction. 
 
-The goal of this project was to leverage advanced cloud SQL preprocessing inside Google BigQuery, build a unified data model, and deploy a highly automated, interactive dashboard in Looker Studio. This analytics suite isolates performance bottlenecks, measures exact micro-conversions, and diagnoses specific behavioral drop-off points.
+A digital commerce retailer faced conversion rate stagnation despite maintaining steady acquisition traffic. Management lacked granular visibility into checkout drop-offs and behavioral frictions across the multi-step purchasing journey.
 
-👉 **[Live Looker Studio Dashboard Link](https://lookerstudio.google.com/reporting/a28fef3e-5508-4435-a566-0fd0f668eab8)**
+**The Objective:** Build an end-to-end cloud analytical pipeline using **Google BigQuery SQL** and design a high-density, interactive executive dashboard in **Looker Studio**. The solution maps out a **7-stage e-commerce conversion funnel**, isolates friction points from initial session to purchase, and provides cross-filterable segmentation across devices, landing pages, and traffic campaigns.
 
-## 🛠️ Tech Stack & Skills Demonstrated
-* **Cloud Data Warehouse:** Google BigQuery (handling raw, high-volume clickstream logs).
-* **Data Engineering & Preprocessing:** SQL (Advanced CTEs, dynamic aggregate metrics routing, window functions calculation, and data cleansing).
-* **Business Intelligence (BI):** Looker Studio (interactive dashboard architecture, dynamic user controls implementation, custom funnel calculations).
-* **Performance Analysis:** Cohort/Funnel optimization (CRO metrics tracking, drop-off identification).
-
-## 📉 Core Funnel Metrics & Architecture
-The logic tracks user progression through four distinct micro-conversion milestones:
-`Sessions` ➡️ `Product Views` ➡️ `Add to Cart` ➡️ `Purchase`
-
-* **Cart Abandonment Velocity (CR to Add to Cart):** **12.5%** of viewers proceed to add products.
-* **Macro-Conversion Efficiency (CR to Purchase):** **3.4%** global session-to-purchase completion rate.
+🔗 **[Live Interactive Looker Studio Dashboard Link](https://datastudio.google.com/reporting/a28fef3e-5508-4435-a566-0fd0f668eab8)**
 
 ---
 
-## 📐 Data Processing & SQL Framework (src/)
-Instead of feeding messy, raw events directly into Looker Studio—which degrades query response times and complicates calculation metrics—all data was pre-aggregated using native standard SQL in BigQuery.
+## 🛠️ Tech Stack & Analytical Competencies
 
-The pipeline computes conversion stages, parses traffic variables, and filters out system anomalies. The final script ensures index-level cleanliness and is stored inside the `/src` directory.
+* **Cloud Data Warehousing:** Google BigQuery (processing high-volume, event-level clickstream data).
+* **Data Engineering & Preprocessing:** Cloud SQL (Window functions, CTEs, stage routing, string parsing, and dataset aggregation).
+* **Business Intelligence (BI):** Looker Studio (custom funnel visual architecture, interactive cross-filtering, UI/UX optimization).
+* **CRO & Product Analytics:** Drop-off rate diagnosis, checkout leakage tracking, multi-channel acquisition profiling.
 
 ---
 
-## 📊 Dashboard Insights & Strategic Findings
+## 📊 Executive KPI Snapshot & Funnel Architecture
 
-### 1. The Critical View-to-Cart Drop-off
-The data reveals that the lowest-performing phase is the transitional bridge between product views and cart additions. This visually directs product managers to audit product page UI/UX barriers, sizing availability alerts, or localized price validation errors.
+![Dashboard Overview](./images/dashboard_overview.png)
 
-![E-commerce Funnel Main Schema](images/funnel.PNG)
+### 📈 Core Top-Line KPIs
+* **Total Sessions (Visits):** `354,857`
+* **Qualified Orders:** `38,033`
+* **Completed Purchases:** `4,745`
+* **Macro Conversion Rate (CR to Purchase):** `1.34%`
 
-### 2. High-Value Top-Line KPIs
-* **Core Elements:** High-level executive scorecards displaying global metrics with automatic period-over-period direction signals.
+---
 
-![Executive Scorecards](images/scorecards.png)
+## 📉 7-Stage Granular Conversion Funnel Analysis
 
-### 3. Traffic Acquisition & Sourcing Performance
-* **Organic Supremacy:** Organic search traffic exhibits a structurally superior conversion velocity into the `Add to Cart` step compared to paid advertising banners.
-* **Temporal Fluctuations:** Behavioral tracking isolated significant peak transaction surges during weekend periods, identifying clear optimization windows for targeted push marketing campaigns.
+Unlike high-level 3-step models, this architecture tracks customer movement through 7 micro-conversion milestones to isolate precise operational bottlenecks:
 
-![Traffic Acquisition Breakdown](images/by%20source-medium.png)
+![7-Stage Conversion Funnel](./images/detailed_funnel.png)
 
-### 4. Interactive User-Intent Sorting & Controls
-* **Core Elements:** Unified filtering panes embedded directly into the report. Decision-makers can dynamically slice behavioral charts by Date Ranges, Country, Devices (Desktop vs. Mobile), and Channel Mediums seamlessly without data latency.
+1. **01 Visit:** `354,857` (100.00%) — Baseline acquisition traffic.
+2. **02 View Item:** `75,273` (**21.21%**) — *Primary Discovery Drop-off*: **78.79%** of visitors leave without engaging with a product page.
+3. **03 Add to Cart:** `14,904` (**4.20%**) — High-intent buyers adding products to basket.
+4. **04 Begin Checkout:** `10,859` (**3.06%**) — Users initiating payment setup.
+5. **05 Add Shipping:** `10,859` (**3.06%**) — Zero drop-off between checkout start and shipping setup.
+6. **06 Add Payment:** `6,671` (**1.88%**) — *Friction Barrier*: **38.5%** cart leakage observed during shipping-to-payment selection.
+7. **07 Purchase:** `4,745` (**1.34%**) — Final transaction completion.
 
-![Global Interactive Controls](images/controls.png)
+---
+
+## 🔍 Strategic Insights & CRO Recommendations
+
+### 1. The Discovery Friction (Visit ➡️ View Item)
+* **Insight:** Only **21.21%** of site sessions reach a product view page. 
+* **Action:** Overhaul home page recommendations, search indexing, and category navigation to drive immediate product engagement.
+
+### 2. Payment Gateway Friction (Add Shipping ➡️ Add Payment)
+* **Insight:** Significant drop-off from 3.06% to 1.88% occurs at the shipping-to-payment stage.
+* **Action:** Audit payment gateway loading speeds, introduce express payment options (Apple Pay / Google Pay / PayPal), and check for hidden shipping cost surprises.
+
+### 3. Device & Tech Infrastructure Leakage
+* **Insight:** Desktop commands **58.3%** of sessions, Web/iOS represents **11.5%**, with mobile web accounting for the remaining volume. Mobile conversion velocity trails desktop significantly.
+* **Action:** Optimize mobile checkout responsiveness and reduce input fields on smaller viewports.
+
+---
+
+## 🚦 Traffic Acquisition & Landing Page Performance
+
+To isolate marketing efficiency from website UI friction, the dashboard tracks performance down to specific URL structures and campaign sources:
+
+![Traffic & Landing Page Analytics](./images/traffic_and_landing_pages.png)
+
+* **Organic Supremacy:** Organic search and direct traffic drive the highest Add-to-Cart velocity, whereas specific promotional sub-pages (`basket.html`, `store.html`) account for over 80% of total generated revenue (`$198,207`).
+* **Temporal Fluctuations:** Time-series tracking reveals distinct revenue spikes during specific engagement windows, allowing marketing teams to optimize ad spend timing.
+
+---
+
+## 🎛️ Interactive BI Architecture & Cross-Filtering UX
+
+A key architectural feature of this Looker Studio report is the elimination of cluttered, traditional dropdown menus in favor of an interactive **Visual Control Panel**:
+
+![Interactive Cross-Filtering Controls](./images/cross_filtering_controls.png)
+
+* **Dynamic Cross-Filtering:** Instead of static filters, micro-visualizations (Donut charts for Devices, Horizontal bars for OS, and Treemaps for Languages) serve a dual purpose: they display categorical breakdowns while acting as instant slice-and-dice filters.
+* **Zero-Latency Exploration:** Decision-makers can click directly on an operating system (e.g., `iOS` or `Windows`) or device category (`Mobile`) to dynamically recalculate the entire 7-stage conversion funnel in real time without page reloads.
+
+---
+
+## 📐 Data Processing & SQL Framework (`src/`)
+
+To prevent performance degradation in Looker Studio and eliminate real-time calculation latency, raw event tables were pre-processed and aggregated in **Google BigQuery** using standardized SQL scripts (`src/funnel_transformation.sql`).
+
+* Unified clickstream timestamps into standardized session windows.
+* Aggregated conversion events (`view_item`, `add_to_cart`, `begin_checkout`, `purchase`) into structured metrics.
+* Cleaned UTM dimensions (`Source`, `Medium`, `Campaign`, `Landing page location`).
 
 ---
 
 ## 📂 Repository Architecture
+
 ```text
 E-commerce-Funnel/
-├── src/                  # Production-ready SQL scripts (BigQuery data processing)
-├── dashboard/            # Executive analytical report exported as PDF
-├── images/               # High-resolution visual screenshots & technical assets
-│   ├── funnel.PNG
-│   ├── scorecards.png
-│   ├── by source-medium.png
-│   └── controls.png
-├── README.md             # Professional business case-study documentation
-└── .gitignore            # Local system file configuration flags
+├── src/                  # Production SQL queries (BigQuery transformations)
+│   └── funnel_transformation.sql
+├── dashboard/            # Exported PDF version of the Looker Studio report
+│   └── E-commerce_Fun
