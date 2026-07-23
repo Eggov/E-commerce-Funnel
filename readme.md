@@ -28,7 +28,7 @@ A digital commerce retailer faced conversion rate stagnation despite maintaining
 
 ## 📊 Executive KPI Snapshot & Funnel Architecture
 
-![Dashboard Overview](./images/dashboard_overview.png)
+![Dashboard Overview](./image/dashboard_overview.png)
 
 ### 📈 Core Top-Line KPIs
 * **Total Sessions (Visits):** `354,857`
@@ -42,7 +42,7 @@ A digital commerce retailer faced conversion rate stagnation despite maintaining
 
 Unlike high-level 3-step models, this architecture tracks customer movement through 7 micro-conversion milestones to isolate precise operational bottlenecks:
 
-![7-Stage Conversion Funnel](./images/detailed_funnel.png)
+![7-Stage Conversion Funnel](./image/detailed_funnel.png)
 
 1. **01 Visit:** `354,857` (100.00%) — Baseline acquisition traffic.
 2. **02 View Item:** `75,273` (**21.21%**) — *Primary Discovery Drop-off*: **78.79%** of visitors leave without engaging with a product page.
@@ -74,7 +74,7 @@ Unlike high-level 3-step models, this architecture tracks customer movement thro
 
 To isolate marketing efficiency from website UI friction, the dashboard tracks performance down to specific URL structures and campaign sources:
 
-![Traffic & Landing Page Analytics](./images/traffic_and_landing_pages.png)
+![Traffic & Landing Page Analytics](./image/traffic_and_landing_pages.png)
 
 * **Organic Supremacy:** Organic search and direct traffic drive the highest Add-to-Cart velocity, whereas specific promotional sub-pages (`basket.html`, `store.html`) account for over 80% of total generated revenue (`$198,207`).
 * **Temporal Fluctuations:** Time-series tracking reveals distinct revenue spikes during specific engagement windows, allowing marketing teams to optimize ad spend timing.
@@ -85,7 +85,7 @@ To isolate marketing efficiency from website UI friction, the dashboard tracks p
 
 A key architectural feature of this Looker Studio report is the elimination of cluttered, traditional dropdown menus in favor of an interactive **Visual Control Panel**:
 
-![Interactive Cross-Filtering Controls](./images/cross_filtering_controls.png)
+![Interactive Cross-Filtering Controls](./image/cross_filtering_controls.png)
 
 * **Dynamic Cross-Filtering:** Instead of static filters, micro-visualizations (Donut charts for Devices, Horizontal bars for OS, and Treemaps for Languages) serve a dual purpose: they display categorical breakdowns while acting as instant slice-and-dice filters.
 * **Zero-Latency Exploration:** Decision-makers can click directly on an operating system (e.g., `iOS` or `Windows`) or device category (`Mobile`) to dynamically recalculate the entire 7-stage conversion funnel in real time without page reloads.
